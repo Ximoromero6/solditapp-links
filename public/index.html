@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#0B1020" />
+        <meta name="description" content="Soldit — Buy & sell smarter. App links enabled for solditapp.com." />
+
+        <title>Soldit</title>
+
+        <style>
+            :root {
+                --bg0: #070a13;
+                --bg1: #0b1020;
+                --card: rgba(255, 255, 255, 0.06);
+                --card2: rgba(255, 255, 255, 0.08);
+                --border: rgba(255, 255, 255, 0.12);
+                --text: rgba(255, 255, 255, 0.92);
+                --muted: rgba(255, 255, 255, 0.68);
+                --muted2: rgba(255, 255, 255, 0.52);
+                --brand: #4f46e5;
+                --brand2: #22c55e;
+                --warn: #f59e0b;
+                --shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+                --radius: 18px;
+                --radius2: 26px;
+                --max: 1120px;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                height: 100%;
+            }
+
+            body {
+                margin: 0;
+                font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+                    "Segoe UI Emoji";
+                color: var(--text);
+                background: radial-gradient(1200px 600px at 20% 10%, rgba(79, 70, 229, 0.35), transparent 60%),
+                    radial-gradient(1000px 600px at 80% 30%, rgba(34, 197, 94, 0.2), transparent 55%),
+                    radial-gradient(900px 600px at 30% 90%, rgba(245, 158, 11, 0.12), transparent 55%),
+                    linear-gradient(180deg, var(--bg0), var(--bg1));
+                overflow-x: hidden;
+            }
+
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+
+            .noise {
+                pointer-events: none;
+                position: fixed;
+                inset: 0;
+                opacity: 0.08;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+                mix-blend-mode: overlay;
+            }
+
+            .wrap {
+                max-width: var(--max);
+                margin: 0 auto;
+                padding: 28px 18px 60px;
+            }
+
+            .topbar {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 16px;
+                padding: 14px 14px;
+                border: 1px solid var(--border);
+                border-radius: var(--radius2);
+                background: rgba(0, 0, 0, 0.25);
+                backdrop-filter: blur(10px);
+                box-shadow: var(--shadow);
+            }
+
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                min-width: 180px;
+            }
+
+            .logo {
+                width: 42px;
+                height: 42px;
+                border-radius: 14px;
+                background: linear-gradient(135deg, rgba(79, 70, 229, 1), rgba(34, 197, 94, 0.9));
+                position: relative;
+                box-shadow: 0 14px 40px rgba(79, 70, 229, 0.25);
+                overflow: hidden;
+            }
+
+            .logo::after {
+                content: "";
+                position: absolute;
+                inset: -80px;
+                background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.35), transparent 55%);
+                transform: rotate(25deg);
+                animation: floaty 10s ease-in-out infinite;
+            }
+
+            @keyframes floaty {
+                0% {
+                    transform: translate3d(0, 0, 0) rotate(25deg);
+                }
+                50% {
+                    transform: translate3d(12px, -10px, 0) rotate(25deg);
+                }
+                100% {
+                    transform: translate3d(0, 0, 0) rotate(25deg);
+                }
+            }
+
+            .brand h1 {
+                margin: 0;
+                font-size: 16px;
+                line-height: 1.1;
+                letter-spacing: 0.2px;
+            }
+
+            .brand p {
+                margin: 2px 0 0;
+                font-size: 12px;
+                color: var(--muted);
+            }
+
+            .nav {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+            }
+
+            .pill {
+                border: 1px solid var(--border);
+                background: rgba(255, 255, 255, 0.04);
+                padding: 10px 12px;
+                border-radius: 999px;
+                font-size: 13px;
+                color: var(--muted);
+                transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+            }
+
+            .pill:hover {
+                transform: translateY(-1px);
+                background: rgba(255, 255, 255, 0.06);
+                border-color: rgba(255, 255, 255, 0.18);
+            }
+
+            .hero {
+                margin-top: 20px;
+                display: grid;
+                grid-template-columns: 1.15fr 0.85fr;
+                gap: 18px;
+                align-items: stretch;
+            }
+
+            @media (max-width: 900px) {
+                .hero {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            .card {
+                border: 1px solid var(--border);
+                border-radius: var(--radius2);
+                background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+                backdrop-filter: blur(12px);
+                box-shadow: var(--shadow);
+                overflow: hidden;
+            }
+
+            .hero-left {
+                padding: 28px 22px;
+                position: relative;
+                min-height: 360px;
+            }
+
+            .badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 10px 12px;
+                border-radius: 999px;
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                background: rgba(0, 0, 0, 0.25);
+                color: var(--muted);
+                font-size: 13px;
+            }
+
+            .dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 999px;
+                background: var(--brand2);
+                box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.15);
+            }
+
+            .hero-title {
+                margin: 14px 0 0;
+                font-size: 44px;
+                line-height: 1.05;
+                letter-spacing: -0.7px;
+            }
+
+            @media (max-width: 520px) {
+                .hero-title {
+                    font-size: 36px;
+                }
+            }
+
+            .hero-sub {
+                margin: 12px 0 0;
+                color: var(--muted);
+                max-width: 60ch;
+                font-size: 15px;
+                line-height: 1.55;
+            }
+
+            .cta-row {
+                margin-top: 18px;
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 12px 14px;
+                border-radius: 14px;
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                background: rgba(255, 255, 255, 0.05);
+                color: var(--text);
+                font-size: 14px;
+                transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+            }
+
+            .btn:hover {
+                transform: translateY(-1px);
+                background: rgba(255, 255, 255, 0.08);
+                border-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .btn.primary {
+                background: linear-gradient(135deg, rgba(79, 70, 229, 1), rgba(79, 70, 229, 0.7));
+                border-color: rgba(79, 70, 229, 0.5);
+                box-shadow: 0 18px 40px rgba(79, 70, 229, 0.25);
+            }
+
+            .btn.primary:hover {
+                background: linear-gradient(135deg, rgba(79, 70, 229, 1), rgba(34, 197, 94, 0.65));
+                border-color: rgba(34, 197, 94, 0.35);
+            }
+
+            .kbd {
+                font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+                font-size: 12px;
+                padding: 4px 8px;
+                border-radius: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                background: rgba(0, 0, 0, 0.35);
+                color: rgba(255, 255, 255, 0.82);
+            }
+
+            .hero-right {
+                display: grid;
+                gap: 12px;
+                padding: 12px;
+            }
+
+            .stat {
+                padding: 14px 14px;
+                border-radius: var(--radius);
+                background: rgba(0, 0, 0, 0.22);
+                border: 1px solid rgba(255, 255, 255, 0.12);
+            }
+
+            .stat h3 {
+                margin: 0;
+                font-size: 14px;
+                color: rgba(255, 255, 255, 0.88);
+            }
+
+            .stat p {
+                margin: 6px 0 0;
+                font-size: 13px;
+                color: var(--muted);
+                line-height: 1.45;
+            }
+
+            .codebox {
+                padding: 14px 14px;
+                border-radius: var(--radius);
+                background: rgba(0, 0, 0, 0.32);
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                overflow: hidden;
+            }
+
+            .codebox .title {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                margin-bottom: 10px;
+            }
+
+            .codebox .title span {
+                color: rgba(255, 255, 255, 0.86);
+                font-size: 13px;
+            }
+
+            pre {
+                margin: 0;
+                padding: 12px;
+                border-radius: 14px;
+                background: rgba(255, 255, 255, 0.04);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                color: rgba(255, 255, 255, 0.86);
+                font-size: 12px;
+                line-height: 1.55;
+                overflow: auto;
+            }
+
+            .grid {
+                margin-top: 18px;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+
+            @media (max-width: 900px) {
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            .mini {
+                padding: 16px 16px;
+                border-radius: var(--radius2);
+                border: 1px solid var(--border);
+                background: rgba(255, 255, 255, 0.04);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+            }
+
+            .mini h4 {
+                margin: 0;
+                font-size: 14px;
+                letter-spacing: 0.2px;
+            }
+
+            .mini p {
+                margin: 8px 0 0;
+                color: var(--muted);
+                font-size: 13px;
+                line-height: 1.5;
+            }
+
+            .footer {
+                margin-top: 18px;
+                padding: 18px 16px;
+                border-radius: var(--radius2);
+                border: 1px solid var(--border);
+                background: rgba(0, 0, 0, 0.22);
+                color: var(--muted2);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+
+            .footer small {
+                font-size: 12px;
+            }
+
+            .footer a {
+                color: rgba(255, 255, 255, 0.78);
+            }
+
+            .footer a:hover {
+                color: rgba(255, 255, 255, 0.92);
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="noise"></div>
+
+        <div class="wrap">
+            <header class="topbar">
+                <div class="brand">
+                    <div class="logo" aria-hidden="true"></div>
+                    <div>
+                        <h1>Soldit</h1>
+                        <p>App links enabled on solditapp.com</p>
+                    </div>
+                </div>
+
+                <nav class="nav">
+                    <a class="pill" href="/.well-known/assetlinks.json">assetlinks.json</a>
+                    <a class="pill" href="https://solditapp-links.vercel.app/.well-known/assetlinks.json" target="_blank" rel="noreferrer">vercel preview</a>
+                    <a class="pill" href="soldit://">open app</a>
+                </nav>
+            </header>
+
+            <section class="hero">
+                <div class="card hero-left">
+                    <div class="badge">
+                        <span class="dot" aria-hidden="true"></span>
+                        <span>Android App Links ready</span>
+                        <span class="kbd">https://solditapp.com</span>
+                    </div>
+
+                    <h2 class="hero-title">Links that open the app, instantly.</h2>
+
+                    <p class="hero-sub">
+                        This domain is configured for Android App Links, so shared URLs can route directly into Soldit. Use
+                        <span class="kbd">https://solditapp.com/...</span> for web links, and <span class="kbd">soldit://</span> for deep links.
+                    </p>
+
+                    <div class="cta-row">
+                        <a class="btn primary" href="/.well-known/assetlinks.json">Verify assetlinks.json</a>
+                        <a class="btn" href="https://solditapp.com/test">Test link</a>
+                        <a class="btn" href="soldit://">Try open app</a>
+                    </div>
+                </div>
+
+                <aside class="card hero-right">
+                    <div class="stat">
+                        <h3>Status</h3>
+                        <p>DNS is on Vercel, and <span class="kbd">/.well-known/assetlinks.json</span> is publicly accessible.</p>
+                    </div>
+
+                    <div class="codebox">
+                        <div class="title">
+                            <span>Quick test</span>
+                            <span class="kbd">Android</span>
+                        </div>
+                        <pre>
+Open this on your phone:
+https://solditapp.com/test
+
+If verified, Android should open Soldit.</pre>
+                    </div>
+
+                    <div class="stat">
+                        <h3>Next</h3>
+                        <p>Add <span class="kbd">intentFilters</span> with <span class="kbd">autoVerify</span> in your app config and rebuild.</p>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="grid">
+                <div class="mini">
+                    <h4>Shareable URLs</h4>
+                    <p>Use <span class="kbd">https://solditapp.com/u/123</span> or <span class="kbd">/product/456</span> so links work everywhere.</p>
+                </div>
+
+                <div class="mini">
+                    <h4>Deep Links</h4>
+                    <p>Use <span class="kbd">soldit://</span> for internal testing and quick navigation during development.</p>
+                </div>
+
+                <div class="mini">
+                    <h4>Secure by design</h4>
+                    <p>Android verifies domain ownership using Digital Asset Links. That’s what the <span class="kbd">assetlinks.json</span> file is for.</p>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <small>© <span id="year"></span> Soldit. Built for fast sharing.</small>
+                <small>
+                    <a href="/.well-known/assetlinks.json">Domain verification</a>
+                    ·
+                    <a href="https://vercel.com" target="_blank" rel="noreferrer">Hosted on Vercel</a>
+                </small>
+            </footer>
+        </div>
+
+        <script>
+            document.getElementById("year").textContent = String(new Date().getFullYear());
+        </script>
+    </body>
+</html>
