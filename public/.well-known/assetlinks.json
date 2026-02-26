@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common_handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.ximo.soldit",
+            "sha256_cert_fingerprints": [
+                "0C:5E:CA:BA:1F:05:69:03:4E:D2:6E:E7:C7:E5:57:25:D4:21:FC:E5:22:9C:1A:CE:C0:8D:76:0E:93:C0:E1:9F"
+            ]
+        }
+    }
+]
