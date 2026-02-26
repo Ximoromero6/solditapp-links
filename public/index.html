@@ -5,33 +5,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <title>Soldit — Coming Soon</title>
-        <meta name="description" content="Soldit is coming soon. Smart local buy & sell — share links that open the app instantly." />
-        <meta name="theme-color" content="#0B1020" />
+        <meta name="description" content="Soldit is coming soon. A modern way to buy & sell locally." />
+        <meta name="theme-color" content="#0B0B12" />
 
-        <!-- Favicon (inline SVG) -->
+        <!-- Minimal favicon (inline SVG) -->
         <link
             rel="icon"
             type="image/svg+xml"
-            href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2264%22 viewBox=%220 0 64 64%22%3E%3Cdefs%3E%3ClinearGradient id=%22g%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%25%22 stop-color=%22%234F46E5%22/%3E%3Cstop offset=%22100%25%22 stop-color=%22%2322C55E%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x=%226%22 y=%226%22 width=%2252%22 height=%2252%22 rx=%2216%22 fill=%22url(%23g)%22/%3E%3Cpath d=%22M42 23c0-3.9-3.2-7-7.1-7H24.5c-1 0-1.8.8-1.8 1.8s.8 1.8 1.8 1.8h10.4c2 0 3.6 1.6 3.6 3.6 0 1.9-1.5 3.4-3.4 3.6H27.5c-3.6.3-6.5 3.3-6.5 7 0 3.9 3.2 7 7.1 7h11c1 0 1.8-.8 1.8-1.8S40 46 39 46H28.1c-2 0-3.6-1.6-3.6-3.6 0-1.9 1.5-3.4 3.4-3.6H34.5c3.6-.3 6.5-3.3 6.5-7z%22 fill=%22white%22 opacity=%220.95%22/%3E%3C/svg%3E"
+            href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2264%22 viewBox=%220 0 64 64%22%3E%3Crect x=%226%22 y=%226%22 width=%2252%22 height=%2252%22 rx=%2216%22 fill=%22%234F46E5%22/%3E%3Cpath d=%22M41.6 23.3c0-4-3.3-7.3-7.3-7.3H25.2c-1 0-1.8.8-1.8 1.8s.8 1.8 1.8 1.8h9.1c2.1 0 3.8 1.7 3.8 3.8 0 2-1.6 3.6-3.6 3.8h-6.7c-3.9.3-6.9 3.6-6.9 7.6 0 4 3.3 7.3 7.3 7.3h10c1 0 1.8-.8 1.8-1.8S40 45 39 45H28.1c-2.1 0-3.8-1.7-3.8-3.8 0-2 1.6-3.6 3.6-3.8h6.7c3.9-.3 6.9-3.6 6.9-7.6z%22 fill=%22white%22 opacity=%220.95%22/%3E%3C/svg%3E"
         />
 
         <style>
             :root {
-                --bg0: #060816;
-                --bg1: #0b1020;
-                --card: rgba(255, 255, 255, 0.06);
-                --card2: rgba(255, 255, 255, 0.08);
+                --bg: #0b0b12;
+                --panel: rgba(255, 255, 255, 0.06);
+                --panel2: rgba(255, 255, 255, 0.08);
                 --border: rgba(255, 255, 255, 0.12);
                 --text: rgba(255, 255, 255, 0.92);
-                --muted: rgba(255, 255, 255, 0.68);
-                --muted2: rgba(255, 255, 255, 0.52);
-                --brand: #4f46e5;
-                --brand2: #22c55e;
-                --warn: #f59e0b;
-                --shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+                --muted: rgba(255, 255, 255, 0.62);
+                --muted2: rgba(255, 255, 255, 0.46);
+                --accent: #4f46e5;
+                --shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
                 --radius: 18px;
                 --radius2: 28px;
-                --max: 1120px;
+                --max: 980px;
             }
 
             * {
@@ -48,70 +45,67 @@
                 font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
                     "Segoe UI Emoji";
                 color: var(--text);
-                background: radial-gradient(1200px 700px at 20% 10%, rgba(79, 70, 229, 0.35), transparent 60%),
-                    radial-gradient(1000px 600px at 85% 25%, rgba(34, 197, 94, 0.18), transparent 55%),
-                    radial-gradient(900px 650px at 35% 95%, rgba(245, 158, 11, 0.14), transparent 55%),
-                    linear-gradient(180deg, var(--bg0), var(--bg1));
+                background: radial-gradient(900px 500px at 20% 20%, rgba(79, 70, 229, 0.25), transparent 55%),
+                    radial-gradient(700px 400px at 85% 75%, rgba(79, 70, 229, 0.12), transparent 55%),
+                    var(--bg);
                 overflow-x: hidden;
             }
 
-            a {
-                color: inherit;
-                text-decoration: none;
-            }
-
-            .noise {
-                pointer-events: none;
-                position: fixed;
-                inset: 0;
-                opacity: 0.08;
-                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
-                mix-blend-mode: overlay;
-            }
-
             .wrap {
-                max-width: var(--max);
-                margin: 0 auto;
-                padding: 18px 16px 60px;
+                min-height: 100%;
+                display: grid;
+                place-items: center;
+                padding: 28px 16px 40px;
             }
 
-            .topbar {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 12px;
-                padding: 12px 12px;
+            .card {
+                width: 100%;
+                max-width: var(--max);
                 border: 1px solid var(--border);
+                background: linear-gradient(180deg, var(--panel), rgba(255, 255, 255, 0.03));
                 border-radius: var(--radius2);
-                background: rgba(0, 0, 0, 0.22);
-                backdrop-filter: blur(10px);
                 box-shadow: var(--shadow);
+                overflow: hidden;
+            }
+
+            .inner {
+                padding: 26px 22px;
+                display: grid;
+                grid-template-columns: 1.1fr 0.9fr;
+                gap: 18px;
+                align-items: center;
+            }
+
+            @media (max-width: 920px) {
+                .inner {
+                    grid-template-columns: 1fr;
+                }
             }
 
             .brand {
                 display: flex;
                 align-items: center;
-                gap: 12px;
-                min-width: 180px;
+                gap: 14px;
             }
 
             .logo {
-                width: 42px;
-                height: 42px;
-                border-radius: 14px;
-                background: linear-gradient(135deg, rgba(79, 70, 229, 1), rgba(34, 197, 94, 0.9));
+                width: 46px;
+                height: 46px;
+                border-radius: 16px;
+                background: var(--accent);
+                box-shadow: 0 18px 50px rgba(79, 70, 229, 0.28);
                 position: relative;
-                box-shadow: 0 14px 40px rgba(79, 70, 229, 0.25);
                 overflow: hidden;
+                flex: 0 0 auto;
             }
 
             .logo::after {
                 content: "";
                 position: absolute;
-                inset: -70px;
-                background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.35), transparent 55%);
+                inset: -90px;
+                background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.28), transparent 55%);
                 transform: rotate(25deg);
-                animation: floaty 10s ease-in-out infinite;
+                animation: floaty 12s ease-in-out infinite;
             }
 
             @keyframes floaty {
@@ -119,7 +113,7 @@
                     transform: translate3d(0, 0, 0) rotate(25deg);
                 }
                 50% {
-                    transform: translate3d(12px, -10px, 0) rotate(25deg);
+                    transform: translate3d(16px, -10px, 0) rotate(25deg);
                 }
                 100% {
                     transform: translate3d(0, 0, 0) rotate(25deg);
@@ -129,456 +123,212 @@
             .brand h1 {
                 margin: 0;
                 font-size: 16px;
-                line-height: 1.1;
                 letter-spacing: 0.2px;
+                line-height: 1.1;
             }
 
             .brand p {
-                margin: 2px 0 0;
-                font-size: 12px;
+                margin: 4px 0 0;
                 color: var(--muted);
-            }
-
-            .nav {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                flex-wrap: wrap;
-                justify-content: flex-end;
-            }
-
-            .pill {
-                border: 1px solid var(--border);
-                background: rgba(255, 255, 255, 0.04);
-                padding: 10px 12px;
-                border-radius: 999px;
                 font-size: 13px;
-                color: var(--muted);
-                transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
-                white-space: nowrap;
+                line-height: 1.3;
             }
 
-            .pill:hover {
-                transform: translateY(-1px);
-                background: rgba(255, 255, 255, 0.06);
-                border-color: rgba(255, 255, 255, 0.18);
+            .headline {
+                margin: 16px 0 0;
+                font-size: 48px;
+                letter-spacing: -1px;
+                line-height: 1.05;
             }
 
-            .pill.primary {
-                color: rgba(255, 255, 255, 0.92);
-                background: linear-gradient(135deg, rgba(79, 70, 229, 0.92), rgba(79, 70, 229, 0.6));
-                border-color: rgba(79, 70, 229, 0.5);
-            }
-
-            .pill.primary:hover {
-                background: linear-gradient(135deg, rgba(79, 70, 229, 0.92), rgba(34, 197, 94, 0.55));
-                border-color: rgba(34, 197, 94, 0.35);
-            }
-
-            .main {
-                margin-top: 18px;
-                display: grid;
-                grid-template-columns: 1.15fr 0.85fr;
-                gap: 16px;
-                align-items: stretch;
-            }
-
-            @media (max-width: 980px) {
-                .main {
-                    grid-template-columns: 1fr;
+            @media (max-width: 520px) {
+                .headline {
+                    font-size: 38px;
                 }
             }
 
-            .card {
-                border: 1px solid var(--border);
-                border-radius: var(--radius2);
-                background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
-                backdrop-filter: blur(12px);
-                box-shadow: var(--shadow);
-                overflow: hidden;
+            .sub {
+                margin: 12px 0 0;
+                color: var(--muted);
+                font-size: 15px;
+                line-height: 1.65;
+                max-width: 62ch;
             }
 
-            .hero {
-                padding: 26px 20px;
-                position: relative;
-                min-height: 360px;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                gap: 18px;
-            }
-
-            .badge {
+            .tag {
                 display: inline-flex;
                 align-items: center;
                 gap: 10px;
+                margin-top: 16px;
                 padding: 10px 12px;
                 border-radius: 999px;
                 border: 1px solid rgba(255, 255, 255, 0.14);
-                background: rgba(0, 0, 0, 0.25);
+                background: rgba(0, 0, 0, 0.18);
                 color: var(--muted);
                 font-size: 13px;
-                max-width: 100%;
                 flex-wrap: wrap;
+                max-width: 100%;
             }
 
             .dot {
                 width: 8px;
                 height: 8px;
                 border-radius: 999px;
-                background: var(--warn);
-                box-shadow: 0 0 0 6px rgba(245, 158, 11, 0.16);
-            }
-
-            .hero-title {
-                margin: 0;
-                font-size: 46px;
-                line-height: 1.05;
-                letter-spacing: -0.9px;
-            }
-
-            @media (max-width: 560px) {
-                .hero-title {
-                    font-size: 36px;
-                }
-            }
-
-            .hero-sub {
-                margin: 10px 0 0;
-                color: var(--muted);
-                max-width: 62ch;
-                font-size: 15px;
-                line-height: 1.6;
-            }
-
-            .kbd {
-                font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-                font-size: 12px;
-                padding: 4px 8px;
-                border-radius: 10px;
-                border: 1px solid rgba(255, 255, 255, 0.14);
-                background: rgba(0, 0, 0, 0.35);
-                color: rgba(255, 255, 255, 0.82);
-                display: inline-block;
-                max-width: 100%;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                vertical-align: middle;
-            }
-
-            .cta {
-                display: flex;
-                gap: 10px;
-                flex-wrap: wrap;
-                align-items: center;
-            }
-
-            .btn {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
-                padding: 12px 14px;
-                border-radius: 14px;
-                border: 1px solid rgba(255, 255, 255, 0.14);
-                background: rgba(255, 255, 255, 0.05);
-                color: var(--text);
-                font-size: 14px;
-                transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
-                min-height: 44px;
-            }
-
-            .btn:hover {
-                transform: translateY(-1px);
-                background: rgba(255, 255, 255, 0.08);
-                border-color: rgba(255, 255, 255, 0.2);
-            }
-
-            .btn.primary {
-                background: linear-gradient(135deg, rgba(79, 70, 229, 1), rgba(79, 70, 229, 0.7));
-                border-color: rgba(79, 70, 229, 0.5);
-                box-shadow: 0 18px 40px rgba(79, 70, 229, 0.25);
-            }
-
-            .btn.primary:hover {
-                background: linear-gradient(135deg, rgba(79, 70, 229, 1), rgba(34, 197, 94, 0.65));
-                border-color: rgba(34, 197, 94, 0.35);
+                background: rgba(255, 255, 255, 0.9);
+                opacity: 0.75;
+                box-shadow: 0 0 0 6px rgba(79, 70, 229, 0.18);
             }
 
             .right {
-                padding: 12px;
-                display: grid;
-                gap: 12px;
-            }
-
-            .panel {
-                padding: 14px 14px;
-                border-radius: var(--radius);
-                background: rgba(0, 0, 0, 0.22);
+                border-radius: var(--radius2);
                 border: 1px solid rgba(255, 255, 255, 0.12);
+                background: rgba(0, 0, 0, 0.18);
+                padding: 18px 18px;
             }
 
-            .panel h3 {
+            .right h2 {
                 margin: 0;
                 font-size: 14px;
-                color: rgba(255, 255, 255, 0.88);
+                color: rgba(255, 255, 255, 0.86);
+                letter-spacing: 0.3px;
+                text-transform: uppercase;
             }
 
-            .panel p {
-                margin: 6px 0 0;
-                font-size: 13px;
-                color: var(--muted);
-                line-height: 1.55;
-            }
-
-            .list {
-                margin: 10px 0 0;
+            .features {
+                margin: 14px 0 0;
                 padding: 0;
                 list-style: none;
                 display: grid;
-                gap: 8px;
+                gap: 10px;
             }
 
-            .li {
+            .features li {
                 display: flex;
                 gap: 10px;
                 align-items: flex-start;
-                color: rgba(255, 255, 255, 0.78);
+                color: rgba(255, 255, 255, 0.76);
                 font-size: 13px;
                 line-height: 1.45;
             }
 
-            .check {
+            .icon {
                 width: 18px;
                 height: 18px;
-                border-radius: 6px;
+                border-radius: 7px;
+                background: rgba(79, 70, 229, 0.18);
+                border: 1px solid rgba(79, 70, 229, 0.22);
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
-                background: rgba(34, 197, 94, 0.18);
-                border: 1px solid rgba(34, 197, 94, 0.25);
                 flex: 0 0 auto;
                 margin-top: 1px;
             }
 
-            .check svg {
+            .icon svg {
                 width: 12px;
                 height: 12px;
-                fill: rgba(34, 197, 94, 0.9);
+                fill: rgba(255, 255, 255, 0.9);
+                opacity: 0.9;
             }
 
-            .codebox {
-                padding: 14px 14px;
-                border-radius: var(--radius);
-                background: rgba(0, 0, 0, 0.32);
-                border: 1px solid rgba(255, 255, 255, 0.14);
-                overflow: hidden;
+            .divider {
+                height: 1px;
+                background: rgba(255, 255, 255, 0.1);
+                margin: 16px 0 14px;
             }
 
-            pre {
-                margin: 0;
-                padding: 12px;
-                border-radius: 14px;
-                background: rgba(255, 255, 255, 0.04);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                color: rgba(255, 255, 255, 0.86);
+            .muted-small {
+                color: var(--muted2);
                 font-size: 12px;
-                line-height: 1.55;
-                overflow: auto;
-                white-space: pre-wrap;
-                word-break: break-word;
-            }
-
-            .grid {
-                margin-top: 14px;
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 12px;
-            }
-
-            @media (max-width: 980px) {
-                .grid {
-                    grid-template-columns: 1fr;
-                }
-            }
-
-            .tile {
-                padding: 16px 16px;
-                border-radius: var(--radius2);
-                border: 1px solid var(--border);
-                background: rgba(255, 255, 255, 0.04);
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
-            }
-
-            .tile h4 {
-                margin: 0;
-                font-size: 14px;
-                letter-spacing: 0.2px;
-            }
-
-            .tile p {
-                margin: 8px 0 0;
-                color: var(--muted);
-                font-size: 13px;
-                line-height: 1.55;
+                line-height: 1.5;
             }
 
             .footer {
-                margin-top: 14px;
-                padding: 16px 16px;
-                border-radius: var(--radius2);
-                border: 1px solid var(--border);
-                background: rgba(0, 0, 0, 0.22);
-                color: var(--muted2);
                 display: flex;
-                align-items: center;
                 justify-content: space-between;
-                gap: 12px;
+                gap: 10px;
                 flex-wrap: wrap;
-            }
-
-            .footer small {
+                padding: 16px 22px 18px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                color: var(--muted2);
                 font-size: 12px;
             }
 
-            .footer a {
+            .footer strong {
                 color: rgba(255, 255, 255, 0.78);
-            }
-
-            .footer a:hover {
-                color: rgba(255, 255, 255, 0.92);
+                font-weight: 600;
             }
 
             @media (prefers-reduced-motion: reduce) {
                 .logo::after {
                     animation: none;
                 }
-                .btn,
-                .pill {
-                    transition: none;
-                }
-                .btn:hover,
-                .pill:hover {
-                    transform: none;
-                }
             }
         </style>
     </head>
 
     <body>
-        <div class="noise"></div>
-
         <div class="wrap">
-            <header class="topbar">
-                <div class="brand">
-                    <div class="logo" aria-hidden="true"></div>
-                    <div>
-                        <h1>Soldit</h1>
-                        <p>Coming soon · solditapp.com</p>
-                    </div>
-                </div>
-
-                <nav class="nav">
-                    <a class="pill" href="/.well-known/assetlinks.json">assetlinks.json</a>
-                    <a class="pill primary" href="https://solditapp.com/test">Test link</a>
-                    <a class="pill" href="soldit://">Open app</a>
-                </nav>
-            </header>
-
-            <main class="main">
-                <section class="card hero">
-                    <div>
-                        <div class="badge">
-                            <span class="dot" aria-hidden="true"></span>
-                            <span>Launching soon</span>
-                            <span class="kbd">Android App Links enabled</span>
-                            <span class="kbd">https://solditapp.com</span>
+            <div class="card">
+                <div class="inner">
+                    <section>
+                        <div class="brand">
+                            <div class="logo" aria-hidden="true"></div>
+                            <div>
+                                <h1>Soldit</h1>
+                                <p>Modern local marketplace</p>
+                            </div>
                         </div>
 
-                        <h2 class="hero-title">A better way to buy & sell locally.</h2>
+                        <h2 class="headline">Coming soon.</h2>
 
-                        <p class="hero-sub">
-                            Soldit is getting ready. Soon you’ll be able to share a link and open the product instantly in the app —
-                            with verified, secure Android App Links.
+                        <p class="sub">
+                            A clean, faster way to buy and sell locally. Built for sharing, built for trust, built to feel effortless.
                         </p>
 
-                        <div class="cta">
-                            <a class="btn primary" href="/.well-known/assetlinks.json">Verify domain</a>
-                            <a class="btn" href="https://solditapp.com/test">Try a test URL</a>
-                            <a class="btn" href="soldit://">Open the app</a>
+                        <div class="tag">
+                            <span class="dot" aria-hidden="true"></span>
+                            <span>Launching soon on Android</span>
                         </div>
-                    </div>
+                    </section>
 
-                    <div class="grid" aria-label="Highlights">
-                        <div class="tile">
-                            <h4>Instant deep linking</h4>
-                            <p>Open shared URLs directly inside Soldit — no friction, no copy/paste.</p>
-                        </div>
-                        <div class="tile">
-                            <h4>Secure verification</h4>
-                            <p>Ownership is verified via Digital Asset Links (<span class="kbd">assetlinks.json</span>).</p>
-                        </div>
-                        <div class="tile">
-                            <h4>Built for sharing</h4>
-                            <p>Perfect for WhatsApp, Instagram, and anywhere your users share products.</p>
-                        </div>
-                    </div>
-                </section>
+                    <aside class="right">
+                        <h2>What to expect</h2>
 
-                <aside class="card right">
-                    <div class="panel">
-                        <h3>Status</h3>
-                        <p>Domain verification is live and publicly accessible.</p>
-                        <ul class="list">
-                            <li class="li">
-                                <span class="check" aria-hidden="true">
+                        <ul class="features">
+                            <li>
+                                <span class="icon" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><path d="M9.2 16.6 4.9 12.3l1.4-1.4 2.9 2.9 8-8 1.4 1.4z" /></svg>
                                 </span>
-                                <span><span class="kbd">/.well-known/assetlinks.json</span> is reachable</span>
+                                <span>Simple product posting, clean browsing, and quick actions.</span>
                             </li>
-                            <li class="li">
-                                <span class="check" aria-hidden="true">
+                            <li>
+                                <span class="icon" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><path d="M9.2 16.6 4.9 12.3l1.4-1.4 2.9 2.9 8-8 1.4 1.4z" /></svg>
                                 </span>
-                                <span>DNS handled by Vercel nameservers</span>
+                                <span>Shareable links that open seamlessly in the app.</span>
                             </li>
-                            <li class="li">
-                                <span class="check" aria-hidden="true">
+                            <li>
+                                <span class="icon" aria-hidden="true">
                                     <svg viewBox="0 0 24 24"><path d="M9.2 16.6 4.9 12.3l1.4-1.4 2.9 2.9 8-8 1.4 1.4z" /></svg>
                                 </span>
-                                <span>Ready for <span class="kbd">autoVerify</span> in Android</span>
+                                <span>Modern UI, built to feel fast and focused.</span>
                             </li>
                         </ul>
-                    </div>
 
-                    <div class="codebox">
-                        <h3 style="margin: 0 0 8px; font-size: 14px; color: rgba(255, 255, 255, 0.88);">Quick test</h3>
-                        <pre>
-Open on Android:
-https://solditapp.com/test
+                        <div class="divider"></div>
 
-If verified, the Soldit app should open.</pre>
-                    </div>
-
-                    <div class="panel">
-                        <h3>Links</h3>
-                        <p>
-                            Useful endpoints:
-                            <br />
-                            <a href="/.well-known/assetlinks.json"><span class="kbd">assetlinks.json</span></a>
+                        <p class="muted-small">
+                            Stay tuned. This page will evolve as we get closer to launch.
                         </p>
-                    </div>
-                </aside>
-            </main>
+                    </aside>
+                </div>
 
-            <footer class="footer">
-                <small>© <span id="year"></span> Soldit. Coming soon.</small>
-                <small>
-                    <a href="/.well-known/assetlinks.json">Domain verification</a>
-                    ·
-                    <a href="https://vercel.com" target="_blank" rel="noreferrer">Hosted on Vercel</a>
-                </small>
-            </footer>
+                <div class="footer">
+                    <span>© <span id="year"></span> <strong>Soldit</strong></span>
+                    <span>Built with care in progress</span>
+                </div>
+            </div>
         </div>
 
         <script>
